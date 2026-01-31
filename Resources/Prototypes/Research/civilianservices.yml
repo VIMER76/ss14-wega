@@ -115,6 +115,8 @@
   - FauxTileAstroSnow
   - FauxTileAstroAsteroidSand
   - FauxTileDesertAstroSand
+  - FauxTileAstroIronsand
+  - FauxTileAstroIronsandBorderless
 
 # Corvax-Wega-Edit
 # - type: technology
@@ -133,7 +135,7 @@
 #   - SyringeCryostasis
 
 # Corvax-Wega-Edit
-# - type: technology
+# - type: technology # Merge with other T2 medical research if possible!
 #   id: MechanizedTreatment
 #   name: research-technology-mechanized-treatment
 #   icon:
@@ -143,7 +145,8 @@
 #   tier: 2
 #   cost: 5000
 #   recipeUnlocks:
-#   - BorgModuleAdvancedChemical
+#   - BorgModuleAdvancedTopical
+#   - AdvancedJetInjector
 
 - type: technology
   id: AdvancedCleaning
