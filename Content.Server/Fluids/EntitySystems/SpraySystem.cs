@@ -74,7 +74,7 @@ public sealed class SpraySystem : SharedSpraySystem
 
         // Corvax-Wega-Surgery-start
         if (args.Target != null && HasComp<ItemComponent>(args.Target)
-            && _solutionContainer.TryGetSolution(entity.Owner, SprayComponent.SolutionName, out _, out var solution)
+            && _solutionContainer.TryGetSolution(entity.Owner, entity.Comp.Solution, out _, out var solution)
             && solution.GetTotalPrototypeQuantity("Ethanol") >= FixedPoint2.New(5))
         {
             EnsureComp<SterileComponent>(args.Target.Value);

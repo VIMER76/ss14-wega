@@ -209,16 +209,10 @@
             "name": "zookeeper"
         },
         {
-            "name": "bartender"
-        },
-        {
             "name": "blueshield"
         },
         {
             "name": "postman"
-        },
-        {
-            "name": "geneticist"
         }
     ]
 }

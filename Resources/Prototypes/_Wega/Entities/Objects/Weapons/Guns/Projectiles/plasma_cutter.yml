@@ -15,10 +15,10 @@
     size: Normal
     shape:
     - 0,0,2,1
-  - type: PredictedBattery
+  - type: Battery
     maxCharge: 1500
     startingCharge: 1500
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRechargeRate: 25
   - type: BatteryAmmoProvider
     proto: BulletPlasmaCutter
@@ -30,7 +30,7 @@
   id: WeaponPlasmaCutterEmpty
   suffix: Empty
   components:
-  - type: PredictedBattery
+  - type: Battery
     maxCharge: 1500
     startingCharge: 0
 

@@ -4,17 +4,15 @@ using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Shared._Wega.Implants.Components;
 using Content.Shared.Power.Components;
-using Content.Shared.Power.EntitySystems;
 using Content.Shared.PowerCell;
 using Robust.Server.Audio;
-using System.Diagnostics;
 
 namespace Content.Server._Wega.Implants;
 
 public sealed class BatteryDrainerImplantSystem : EntitySystem
 {
     [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly PredictedBatterySystem _battery = default!;
+    [Dependency] private readonly BatterySystem _battery = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
@@ -72,7 +70,7 @@ public sealed class BatteryDrainerImplantSystem : EntitySystem
         EntityUid? battery = null;
         foreach (var entity in _hands.EnumerateHeld(uid))
         {
-            if (HasComp<PredictedBatteryComponent>(entity))
+            if (HasComp<BatteryComponent>(entity))
             {
                 battery = entity;
                 break;
@@ -92,7 +90,7 @@ public sealed class BatteryDrainerImplantSystem : EntitySystem
     {
         if (!_powerCell.TryGetBatteryFromSlot(uid, out var battery))
         {
-            if (HasComp<PredictedBatteryComponent>(uid))
+            if (HasComp<BatteryComponent>(uid))
                 return uid;
         }
         else
@@ -109,10 +107,7 @@ public sealed class BatteryDrainerImplantSystem : EntitySystem
         if (sourceUid == null || targetUid == null)
             return;
 
-        Log.Info(_battery.GetCharge(sourceUid.Value).ToString() + "Мя");
-        Log.Info(targetUid.Value.ToString() + "UwU");
-
-        if (!HasComp<PredictedBatteryComponent>(sourceUid) || !TryComp<PredictedBatteryComponent>(targetUid, out var targetBattery))
+        if (!HasComp<BatteryComponent>(sourceUid) || !TryComp<BatteryComponent>(targetUid, out var targetBattery))
             return;
 
         float transfer = Math.Clamp(targetBattery.MaxCharge - _battery.GetCharge(targetUid.Value), 0f, _battery.GetCharge(sourceUid.Value));
