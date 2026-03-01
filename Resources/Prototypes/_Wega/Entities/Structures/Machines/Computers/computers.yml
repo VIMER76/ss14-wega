@@ -129,7 +129,7 @@
   - type: UserInterface
     interfaces:
       enum.LavalandShuttleConsoleUiKey.Key:
-        type: LavalandShuttleConsoleBoundUserInterface
+        type: LavalandConsoleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: ApcPowerReceiver
@@ -167,7 +167,7 @@
   - type: UserInterface
     interfaces:
       enum.PenalServitudeLavalandShuttleConsoleUiKey.Key:
-        type: LavalandPenalServitudeShuttleConsoleBoundUserInterface
+        type: LavalandPenalServitudeConsoleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: ApcPowerReceiver

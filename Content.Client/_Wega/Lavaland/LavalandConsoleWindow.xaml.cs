@@ -10,7 +10,6 @@ namespace Content.Client._Wega.Lavaland;
 public sealed partial class LavalandConsoleWindow : FancyWindow
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IDependencyCollection _dependencies = default!;
 
     public Action? OnCallButtonPressed;
     private TimeSpan? _cooldownEndTime;
@@ -18,7 +17,6 @@ public sealed partial class LavalandConsoleWindow : FancyWindow
     public LavalandConsoleWindow()
     {
         RobustXamlLoader.Load(this);
-        _dependencies.InjectDependencies(this);
 
         CallButton.OnPressed += _ => OnCallButtonPressed?.Invoke();
     }

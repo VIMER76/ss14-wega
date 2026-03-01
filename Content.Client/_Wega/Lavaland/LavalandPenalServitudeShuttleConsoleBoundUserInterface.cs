@@ -3,12 +3,12 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client._Wega.Lavaland;
 
-public sealed class LavalandPenalServitudeShuttleConsoleBoundUserInterface : BoundUserInterface
+public sealed class LavalandPenalServitudeConsoleBoundUserInterface : BoundUserInterface
 {
     [ViewVariables]
     private LavalandPenalServitudeConsoleWindow? _window;
 
-    public LavalandPenalServitudeShuttleConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) { }
+    public LavalandPenalServitudeConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) { }
 
     protected override void Open()
     {
