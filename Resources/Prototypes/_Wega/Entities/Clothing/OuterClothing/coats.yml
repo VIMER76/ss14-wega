@@ -108,7 +108,7 @@
 
 - type: entity
   parent: ClothingOuterStorageBase
-  id: ADTClothingOuterDutch
+  id: ClothingOuterDutch
   name: dutch's jacket
   description: For those long nights on the beach in Tahiti.
   components:
@@ -119,7 +119,7 @@
 
 - type: entity
   parent: ClothingOuterStorageBase
-  id: ADTClothingOuterLettermanNanoTrasen
+  id: ClothingOuterLettermanNanoTrasen
   name: blue letterman jacket
   description: A blue letterman jacket with a proud Nanotrasen N on the back. The tag says that it was made by Mr.Chang's corp.
   components:
@@ -130,7 +130,7 @@
 
 - type: entity
   parent: ClothingOuterStorageBase
-  id: ADTClothingOuterLettermanSyndie
+  id: ClothingOuterLettermanSyndie
   name: blood-red letterman jacket
   description: A blood-red letterman jacket with a huge S on the back. Nothing suspicious.
   components:
@@ -141,7 +141,7 @@
 
 - type: entity
   parent: ClothingOuterStorageBase
-  id: ADTClothingOuterLettermanBlack
+  id: ClothingOuterLettermanBlack
   name: black letterman jacket
   description: A black letterman jacket.
   components:
@@ -149,10 +149,10 @@
     sprite: _Wega/Clothing/OuterClothing/Coats/letterman_black.rsi
   - type: Clothing
     sprite: _Wega/Clothing/OuterClothing/Coats/letterman_black.rsi
-    
+
 - type: entity
   parent: ClothingOuterStorageBase
-  id: ADTClothingOuterWhiteSweatshirtTop
+  id: ClothingOuterWhiteSweatshirtTop
   name: white sweatshirt-top
   description: white sweatshirt-top
   components:
@@ -165,7 +165,7 @@
 
 - type: entity
   parent: ClothingOuterStorageBase
-  id: ADTClothingOuterGraySweatshirtTop
+  id: ClothingOuterGraySweatshirtTop
   name: gray sweatshirt-top
   description: gray sweatshirt-top
   components:
@@ -178,7 +178,7 @@
 
 - type: entity
   parent: ClothingOuterStorageBase
-  id: ADTClothingOuterBlackSweatshirtTop
+  id: ClothingOuterBlackSweatshirtTop
   name: black sweatshirt-top
   description: black sweatshirt-top
   components:

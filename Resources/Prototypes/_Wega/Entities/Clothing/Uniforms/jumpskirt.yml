@@ -257,7 +257,7 @@
 
 - type: entity
   parent: ClothingUniformSkirtBase
-  id: ADTClothingUniformJumpskirtBartenderRed
+  id: ClothingUniformJumpskirtBartenderRed
   name: bartender's uniform
   description: A nice and tidy uniform. Shame about the bar though.
   components:
@@ -268,7 +268,7 @@
 
 - type: entity
   parent: ClothingUniformSkirtBase
-  id: ADTClothingUniformJumpskirtBartenderGreen
+  id: ClothingUniformJumpskirtBartenderGreen
   name: bartender's uniform
   description: A nice and tidy uniform. Shame about the bar though.
   components:
@@ -279,7 +279,7 @@
 
 - type: entity
   parent: ClothingUniformSkirtBase
-  id: ADTClothingUniformDressVintage
+  id: ClothingUniformDressVintage
   name: vintage dress
   description: A beautiful vintage dress for special occasions.
   components:
@@ -292,7 +292,7 @@
 
 - type: entity
   parent: ClothingUniformSkirtBase
-  id: ADTClothingUniformSwimBlack
+  id: ClothingUniformSwimBlack
   name: black swimsuit
   description: A stylish black swimsuit for the beach or pool.
   components:
@@ -305,7 +305,7 @@
 
 - type: entity
   parent: ClothingUniformSkirtBase
-  id: ADTClothingUniformSwimBlue
+  id: ClothingUniformSwimBlue
   name: blue swimsuit
   description: A bright blue swimsuit perfect for summer days.
   components:
@@ -318,7 +318,7 @@
 
 - type: entity
   parent: ClothingUniformSkirtBase
-  id: ADTClothingUniformSwimDarkGreen
+  id: ClothingUniformSwimDarkGreen
   name: dark green swimsuit
   description: A dark green swimsuit with a classic look.
   components:
@@ -331,7 +331,7 @@
 
 - type: entity
   parent: ClothingUniformSkirtBase
-  id: ADTClothingUniformSwimGreen
+  id: ClothingUniformSwimGreen
   name: green swimsuit
   description: A vibrant green swimsuit for the bold.
   components:
@@ -344,7 +344,7 @@
 
 - type: entity
   parent: ClothingUniformSkirtBase
-  id: ADTClothingUniformSwimPurple
+  id: ClothingUniformSwimPurple
   name: purple swimsuit
   description: A beautiful purple swimsuit with elegant design.
   components:
@@ -357,7 +357,7 @@
 
 - type: entity
   parent: ClothingUniformSkirtBase
-  id: ADTClothingUniformSwimRed
+  id: ClothingUniformSwimRed
   name: red swimsuit
   description: A stunning red swimsuit that catches the eye.
   components:
@@ -370,7 +370,7 @@
 
 - type: entity
   parent: ClothingUniformSkirtBase
-  id: ADTClothingUniformTangoDressBlack
+  id: ClothingUniformTangoDressBlack
   name: black tango dress
   description: An elegant black tango dress for passionate dances.
   components:
@@ -383,7 +383,7 @@
 
 - type: entity
   parent: ClothingUniformSkirtBase
-  id: ADTClothingUniformTangoDressWhite
+  id: ClothingUniformTangoDressWhite
   name: white tango dress
   description: A graceful white tango dress for elegant performances.
   components:

@@ -52,7 +52,7 @@
 # ADT Paws
 - type: entity
   parent: ClothingHandsGlovesSyntheticBase
-  id: ADTClothingHandsCatPawsWhite
+  id: ClothingHandsCatPawsWhite
   name: white cat paws
   description: Super soft white cat paws, especially for the most brutal station workers.
   components:
@@ -70,7 +70,7 @@
 
 - type: entity
   parent: ClothingHandsGlovesSyntheticBase
-  id: ADTClothingHandsCatPawsBrown
+  id: ClothingHandsCatPawsBrown
   name: brown cat paws
   description: Super soft white cat paws, especially for the most brutal station workers.
   components:
@@ -88,7 +88,7 @@
 
 - type: entity
   parent: ClothingHandsGlovesSyntheticBase
-  id: ADTClothingHandsCatPawsBlack
+  id: ClothingHandsCatPawsBlack
   name: black cat paws
   description: Super soft white cat paws, especially for the most brutal station workers.
   components:
@@ -106,7 +106,7 @@
 
 - type: entity
   parent: ClothingHandsGlovesSyntheticBase
-  id: ADTClothingHandsCatPawsBlackWhite
+  id: ClothingHandsCatPawsBlackWhite
   name: black and white cat paws
   description: Super soft white cat paws, especially for the most brutal station workers.
   components:
@@ -124,8 +124,8 @@
 
 # Боевая версия перчаток в аплинке
 - type: entity
-  parent: ADTClothingHandsCatPawsWhite
-  id: ADTClothingHandsCatPawsWhiteCombat
+  parent: ClothingHandsCatPawsWhite
+  id: ClothingHandsCatPawsWhiteCombat
   name: white cat paws combat
   description: Super soft white cat paws, especially for the most brutal station workers.
   suffix: Combat
@@ -138,8 +138,8 @@
       collection: AlienClaw
 
 - type: entity
-  parent: ADTClothingHandsCatPawsBrown
-  id: ADTClothingHandsCatPawsBrownCombat
+  parent: ClothingHandsCatPawsBrown
+  id: ClothingHandsCatPawsBrownCombat
   name: brown cat paws combat
   description: Super soft white cat paws, especially for the most brutal station workers.
   suffix: Combat
@@ -152,8 +152,8 @@
       collection: AlienClaw
 
 - type: entity
-  parent: ADTClothingHandsCatPawsBlack
-  id: ADTClothingHandsCatPawsBlackCombat
+  parent: ClothingHandsCatPawsBlack
+  id: ClothingHandsCatPawsBlackCombat
   name: black cat paws combat
   description: Super soft white cat paws, especially for the most brutal station workers.
   suffix: Combat
@@ -166,8 +166,8 @@
       collection: AlienClaw
 
 - type: entity
-  parent: ADTClothingHandsCatPawsBlackWhite
-  id: ADTClothingHandsCatPawsWhiteBlackCombat
+  parent: ClothingHandsCatPawsBlackWhite
+  id: ClothingHandsCatPawsWhiteBlackCombat
   name: black and white cat paws combat
   description: Super soft white cat paws, especially for the most brutal station workers.
   suffix: Combat

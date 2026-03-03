@@ -1,2 +1,2 @@
-ent-ADTClothingEyesGlassesMonocle = монокль
+ent-ClothingEyesGlassesMonocle = монокль
     .desc = Устаревший оптический прибор для коррекции зрения или демонстрации высокомерия.

@@ -1,17 +1,17 @@
-ent-ADTClothingHandsCatPawsWhite = белые кошачьи лапки
+ent-ClothingHandsCatPawsWhite = белые кошачьи лапки
     .desc = Супермягкие белые кошачьи лапки, специально для самых брутальных работников станции.
-ent-ADTClothingHandsCatPawsBrown = коричневые кошачьи лапки
+ent-ClothingHandsCatPawsBrown = коричневые кошачьи лапки
     .desc = Супермягкие коричневые кошачьи лапки, специально для самых брутальных работников станции.
-ent-ADTClothingHandsCatPawsBlack = чёрные кошачьи лапки
+ent-ClothingHandsCatPawsBlack = чёрные кошачьи лапки
     .desc = Супермягкие чёрные кошачьи лапки, специально для самых брутальных работников станции.
-ent-ADTClothingHandsCatPawsBlackWhite = чёрно-белые кошачьи лапки
+ent-ClothingHandsCatPawsBlackWhite = чёрно-белые кошачьи лапки
     .desc = Супермягкие чёрно-белые кошачьи лапки, специально для самых брутальных работников станции.
 # Боевые кошачьи лапки
-ent-ADTClothingHandsCatPawsWhiteCombat = белые кошачьи лапки
+ent-ClothingHandsCatPawsWhiteCombat = белые кошачьи лапки
     .desc = Супермягкие белые кошачьи лапки, специально для самых брутальных работников станции.
-ent-ADTClothingHandsCatPawsBrownCombat = коричневые кошачьи лапки
+ent-ClothingHandsCatPawsBrownCombat = коричневые кошачьи лапки
     .desc = Супермягкие коричневые кошачьи лапки, специально для самых брутальных работников станции.
-ent-ADTClothingHandsCatPawsBlackCombat = чёрные кошачьи лапки
+ent-ClothingHandsCatPawsBlackCombat = чёрные кошачьи лапки
     .desc = Супермягкие чёрные кошачьи лапки, специально для самых брутальных работников станции.
-ent-ADTClothingHandsCatPawsWhiteBlackCombat = чёрно-белые кошачьи лапки
+ent-ClothingHandsCatPawsWhiteBlackCombat = чёрно-белые кошачьи лапки
     .desc = Супермягкие чёрно-белые кошачьи лапки, специально для самых брутальных работников станции.

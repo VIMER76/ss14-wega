@@ -31,39 +31,37 @@
     ClothingEyesSalesman: 3
     ClothingEyesGlassesJensen: 3
     ClothingEyesEyepatch: 3
-    ClothingEyesBlindfoldDecor: 3
-    ADTClothingEyesGlassesMonocle: 3
+    ClothingEyesGlassesMonocle: 3
     # Neck
     ClothingMaskNeckGaiter: 3
     ClothingMaskNeckGaiterRed: 3
     ClothingOuterPoncho: 3
-    ADTClothingNeckGoldTie: 5
-    ADTClothingNeckScarfLongWhite: 5
-    ADTClothingNeckScarfLongPurple: 5
-    ADTClothingNeckScarfLongGreen: 5
-    ADTClothingNeckScarfLongBlack: 5
-    ADTClothingNeckScarfLongOrange: 5
-    ADTClothingNeckScarfLongYellow: 5
-    ADTClothingNeckScarfLongRed: 5
-    ADTClothingNeckScarfLongBlue: 5
-    ADTClothingNeckScarfLongPink: 5
-    ADTClothingNeckScarfStripedWhite: 5
+    ClothingNeckGoldTie: 5
+    ClothingNeckScarfLongWhite: 5
+    ClothingNeckScarfLongPurple: 5
+    ClothingNeckScarfLongGreen: 5
+    ClothingNeckScarfLongBlack: 5
+    ClothingNeckScarfLongOrange: 5
+    ClothingNeckScarfLongYellow: 5
+    ClothingNeckScarfLongRed: 5
+    ClothingNeckScarfLongBlue: 5
+    ClothingNeckScarfLongPink: 5
+    ClothingNeckScarfStripedWhite: 5
     # Belt
     ClothingBeltSuspendersRed: 3
     ClothingBeltSuspendersBlack: 3
-    ADTClothingBeltBrownSuspenders: 5
+    ClothingBeltBrownSuspenders: 5
     # Outerclothing
     ClothingOuterHoodieBlack: 3
     ClothingOuterCoatExpensive: 3
     ClothingOuterCoatJensen: 3
-    ADTClothingOuterDutch: 5
-    ADTClothingOuterWhiteSweatshirtTop: 5
-    ADTClothingOuterGraySweatshirtTop: 5
-    ADTClothingOuterBlackSweatshirtTop: 5
-    ADTClothingOuterLettermanNanoTrasen: 5
-    ADTClothingOuterLettermanSyndie: 5
-    ADTClothingOuterLettermanBlack: 5
-    ADTClothingOuterWinterRussianCoat: 5
+    ClothingOuterDutch: 5
+    ClothingOuterWhiteSweatshirtTop: 5
+    ClothingOuterGraySweatshirtTop: 5
+    ClothingOuterBlackSweatshirtTop: 5
+    ClothingOuterLettermanNanoTrasen: 5
+    ClothingOuterLettermanSyndie: 5
+    ClothingOuterLettermanBlack: 5
     ClothingOuterCoatAshen: 3
     ClothingOuterApronBar: 5
     ClothingOuterHoodieGrey: 3
@@ -96,51 +94,50 @@
     ClothingUniformJumpskirtTacticool: 3
     ClothingUniformJumpsuitTurtleneckTactick: 3
     ClothingUniformJumpsuitFamilyGuy: 3
-    ADTClothingUniformJumpsuitDenimPants: 5
-    ADTClothingUniformJumpsuitBlackPants: 5
-    ADTClothingUniformJumpsuitWhitePants: 5
-    ADTClothingUniformJumpsuitBlackShorts: 5
-    ADTClothingUniformJumpsuitWhiteShorts: 5
-    ADTClothingUniformJumpsuitDenim: 5
-    ADTClothingUniformJumpsuitCamouflageTshirt: 5
-    ADTClothingUniformJumpsuitCamouflageTshirtDesert: 5
-    ADTClothingUniformJumpsuitSerious: 5
-    ADTClothingUniformJumpsuitBlackShirt: 5
-    ADTClothingUniformJumpsuitBlueShirt: 5
-    ADTClothingUniformJumpsuitPurpleShirt: 5
-    ADTClothingUniformJumpsuitRedShirt: 5
-    ADTClothingUniformJumpsuitWhiteShirt: 5
-    ADTClothingUniformJumpsuitFancyShirt: 5
-    ADTClothingUniformJumpsuitRedPlaidShirt: 5
-    ADTClothingUniformJumpsuitHawaiiShirt: 5
-    ADTClothingUniformJumpsuitGothicAttire: 5
-    ADTClothingUniformJumpsuitOldGreySuit: 5
-    ADTClothingUniformJumpsuitOldBrownSuit: 5
-    ADTClothingUniformJumpsuitSweatshirtBright: 5
-    ADTClothingUniformJumpsuitDutch: 5
-    ADTClothingUniformJumpsuitTuxedo: 5
-    ADTClothingUniformJumpsuitTuxedoWhite: 5
-    ADTClothingUniformJumpsuitTuxedoRed: 5
-    ADTClothingUniformJumpsuitTuxedoHell: 5
-    ADTClothingUniformDressVintage: 1
-    ADTClothingUniformTangoDressBlack: 1
-    ADTClothingUniformTangoDressWhite: 1
-    ADTClothingUniformSwimBlack: 2
-    ADTClothingUniformSwimBlue: 1
-    ADTClothingUniformSwimDarkGreen: 1
-    ADTClothingUniformSwimGreen: 2
-    ADTClothingUniformSwimPurple: 2
-    ADTClothingUniformSwimRed: 1
-    ADTClothingUniformJumpsuitRedVictorianSuit: 5
-    ADTClothingUniformJumpsuitBlackVictorianSuit: 5
-    ADTClothingUniformJumpsuitBarberBrown: 5
-    ADTClothingUniformJumpsuitBarber: 5
-    ADTClothingUniformKimanoZero: 5
-    ADTClothingUniformJumpsuitBartenderVestGreen: 3
-    ADTClothingUniformJumpsuitBartenderVestRed: 3
-    ADTClothingUniformJumpsuitBartenderVest: 3
-    ADTClothingUniformJumpsuitBartenderGreen: 3
-    ADTClothingUniformJumpsuitBartenderRed: 3
+    ClothingUniformJumpsuitDenimPants: 5
+    ClothingUniformJumpsuitBlackPants: 5
+    ClothingUniformJumpsuitWhitePants: 5
+    ClothingUniformJumpsuitBlackShorts: 5
+    ClothingUniformJumpsuitWhiteShorts: 5
+    ClothingUniformJumpsuitDenim: 5
+    ClothingUniformJumpsuitCamouflageTshirt: 5
+    ClothingUniformJumpsuitCamouflageTshirtDesert: 5
+    ClothingUniformJumpsuitSerious: 5
+    ClothingUniformJumpsuitBlackShirt: 5
+    ClothingUniformJumpsuitBlueShirt: 5
+    ClothingUniformJumpsuitPurpleShirt: 5
+    ClothingUniformJumpsuitRedShirt: 5
+    ClothingUniformJumpsuitWhiteShirt: 5
+    ClothingUniformJumpsuitFancyShirt: 5
+    ClothingUniformJumpsuitRedPlaidShirt: 5
+    ClothingUniformJumpsuitHawaiiShirt: 5
+    ClothingUniformJumpsuitGothicAttire: 5
+    ClothingUniformJumpsuitOldGreySuit: 5
+    ClothingUniformJumpsuitOldBrownSuit: 5
+    ClothingUniformJumpsuitSweatshirtBright: 5
+    ClothingUniformJumpsuitTuxedo: 5
+    ClothingUniformJumpsuitTuxedoWhite: 5
+    ClothingUniformJumpsuitTuxedoRed: 5
+    ClothingUniformJumpsuitTuxedoHell: 5
+    ClothingUniformDressVintage: 1
+    ClothingUniformTangoDressBlack: 1
+    ClothingUniformTangoDressWhite: 1
+    ClothingUniformSwimBlack: 2
+    ClothingUniformSwimBlue: 1
+    ClothingUniformSwimDarkGreen: 1
+    ClothingUniformSwimGreen: 2
+    ClothingUniformSwimPurple: 2
+    ClothingUniformSwimRed: 1
+    ClothingUniformJumpsuitRedVictorianSuit: 5
+    ClothingUniformJumpsuitBlackVictorianSuit: 5
+    ClothingUniformJumpsuitBarberBrown: 5
+    ClothingUniformJumpsuitBarber: 5
+    ClothingUniformKimanoZero: 5
+    ClothingUniformJumpsuitBartenderVestGreen: 3
+    ClothingUniformJumpsuitBartenderVestRed: 3
+    ClothingUniformJumpsuitBartenderVest: 3
+    ClothingUniformJumpsuitBartenderGreen: 3
+    ClothingUniformJumpsuitBartenderRed: 3
     ClothingUniformJumpskirtDetective: 3
     ClothingUniformJumpsuitDetective: 3
     ClothingUniformJumpskirtDetectiveGrey: 3
@@ -149,7 +146,6 @@
     ClothingUniformJumpsuitPsychologist: 3
     ClothingUniformJumpsuitSecBlue: 5
     # Boots
-    ClothingShoesFashionCombatBoots: 3
     ClothingShoesBootsCowboyBrown: 3
     ClothingShoesBootsCowboyWhite: 3
     ClothingShoesBootsCowboyBlack: 3
@@ -158,10 +154,10 @@
     ClothingShoesLeather: 3
     ClothingShoesHighheelBoots: 1
     # Gloves
-    ADTClothingHandsCatPawsWhite: 3
-    ADTClothingHandsCatPawsBrown: 3
-    ADTClothingHandsCatPawsBlack: 3
-    ADTClothingHandsCatPawsBlackWhite: 3
+    ClothingHandsCatPawsWhite: 3
+    ClothingHandsCatPawsBrown: 3
+    ClothingHandsCatPawsBlack: 3
+    ClothingHandsCatPawsBlackWhite: 3
     # Chokers
     ClothingNeckChokerBlack: 2 # Corvax-Wega-Add
     ClothingNeckChokerCyan: 2 # Corvax-Wega-Add
@@ -175,10 +171,10 @@
     ClothingNeckChokerWhite: 2 # Corvax-Wega-Add
     ClothingNeckChokerYellow: 2 # Corvax-Wega-Add
   contrabandInventory:
-    ADTClothingNeckScarfUnrobust: 1
+    ClothingNeckScarfUnrobust: 1
     ClothingUniformJumpsuitOperative: 3
     ClothingUniformJumpskirtOperative: 3
     ClothingHeadHatSyndieMAA: 2
     ClothingNeckScarfStripedSyndieRed: 2
     ClothingNeckScarfStripedSyndieGreen: 2
-    ADTClothingHandsCatPawsWhiteBlackCombat: 1
+    ClothingHandsCatPawsWhiteBlackCombat: 1

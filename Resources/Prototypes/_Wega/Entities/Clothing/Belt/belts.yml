@@ -21,12 +21,12 @@
     state: sheath
   - type: Clothing
     sprite: _Wega/Clothing/Belt/sheriff_sheath.rsi
-    
+
 # ADT
-    
+
 - type: entity
   parent: ClothingBeltBase
-  id: ADTClothingBeltBlackSuspenders
+  id: ClothingBeltBlackSuspenders
   name: black suspenders
   description: A suspenders made with elastic ribbon and the addition of rubber. Made by company "Modeling Agency Dar-Vaxed".
   components:
@@ -40,7 +40,7 @@
 
 - type: entity
   parent: ClothingBeltBase
-  id: ADTClothingBeltBrownSuspenders
+  id: ClothingBeltBrownSuspenders
   name: brown suspenders
   description: A suspenders made of rough leather. Made by company "Modeling Agency Dar-Vaxed".
   components:
