@@ -13,8 +13,6 @@
   id: BaseStorageSuitModule
   abstract: true
   components:
-  - type: ModularSuitActionModule
-    action: OpenStorageModuleAction
   - type: ModularSuitStorageModule
   - type: ModularSuitModule
     tags: [ StorageSuitModule ]
@@ -24,8 +22,6 @@
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
-        requireInputValidation: false
-        interactionRange: -1
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -569,8 +565,8 @@
       disabledAutoMode: true
       disabledAutoOff: true
     - type: ClothingSpeedModifier
-      walkModifier: 0.75
-      sprintModifier: 0.75
+      walkModifier: 0.8
+      sprintModifier: 0.8
   - type: ModularSuitModule
     tags: [ MagneticSuitModule ]
     modulePart: Boots

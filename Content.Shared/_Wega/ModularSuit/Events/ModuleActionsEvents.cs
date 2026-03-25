@@ -6,8 +6,6 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Modular.Suit;
 
-public sealed partial class OpenStorageModuleEvent : InstantActionEvent { }
-
 public sealed partial class ToggleLightModuleEvent : InstantActionEvent
 {
     [DataField]

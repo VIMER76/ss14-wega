@@ -65,7 +65,7 @@ public sealed partial class ModularSuitWindow : BaseWindow
             ? Loc.GetString("modsuit-ui-battery-present")
             : Loc.GetString("modsuit-ui-no-battery");
 
-        PowerDrawLabel.Text = Loc.GetString("modsuit-ui-power-draw-value", ("power", Math.Round(state.TotalPowerDraw, 1)));
+        PowerDrawLabel.Text = Loc.GetString("modsuit-ui-power-draw-value", ("power", Math.Round(state.TotalPowerDraw, 2)));
 
         ActivateButton.Pressed = state.Active;
         ActivateButton.Text = state.Active

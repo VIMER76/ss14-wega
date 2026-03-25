@@ -29,7 +29,7 @@ public sealed class AffectedModuleSpringlockSystem : EntitySystem
 
     private void OnReaction(Entity<AffectedModuleSpringlockComponent> ent, ref ReactionEntityEvent args)
     {
-        if (ent.Comp.Locked)
+        if (ent.Comp.Locked || ent.Comp.Triggered)
             return;
 
         if (args.Method != ent.Comp.LockMethod || args.Reagent.ID != ent.Comp.TargetReagent)
@@ -45,6 +45,9 @@ public sealed class AffectedModuleSpringlockSystem : EntitySystem
 
         var alert = new SoundPathSpecifier("/Audio/_Wega/Effects/Modsuit/springlock.ogg");
         _audio.PlayPredicted(alert, user, null);
+
+        ent.Comp.Triggered = true;
+        Dirty(ent.Owner, ent.Comp);
 
         Timer.Spawn(TimeSpan.FromSeconds(5), () =>
         {

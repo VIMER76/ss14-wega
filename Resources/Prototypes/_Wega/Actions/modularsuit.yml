@@ -27,20 +27,6 @@
 
 - type: entity
   parent: BaseAction
-  id: OpenStorageModuleAction
-  name: "[color=#58c4e8]Open Storage Module[/color]"
-  description: "Opens the storage compartment of the installed module, allowing you to access your stored items."
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    startDelay: true
-    useDelay: 2
-    icon: { sprite: _Wega/Interface/Actions/actions_modules.rsi, state: storage }
-  - type: InstantAction
-    event: !type:OpenStorageModuleEvent
-
-- type: entity
-  parent: BaseAction
   id: ToggleLightModuleAction
   name: "[color=#58c4e8]Toggle Light[/color]"
   description: "Turns the suit's integrated lighting system on or off."

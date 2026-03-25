@@ -178,6 +178,7 @@ public abstract partial class SharedModularSuitSystem : EntitySystem
         {
             _slotBlock.SetEnabled(ent.Owner, false);
             ent.Comp.Deployed = false;
+            ent.Comp.Assembled = false;
 
             Dirty(ent.Owner, ent.Comp);
             UpdateActions(ent);
@@ -189,6 +190,7 @@ public abstract partial class SharedModularSuitSystem : EntitySystem
         _slotBlock.SetEnabled(ent.Owner, false);
         UnequipAllParts(ent, wearer);
         ent.Comp.Deployed = false;
+        ent.Comp.Assembled = false;
 
         _audioSystem.PlayEntity(ent.Comp.DeploySound, wearer, wearer);
         Dirty(ent.Owner, ent.Comp);
@@ -233,7 +235,7 @@ public abstract partial class SharedModularSuitSystem : EntitySystem
         {
             if (Inventory.TryGetSlotEntity(wearer, slot, out var equipped) && equipped == partUid)
             {
-                if (Inventory.TryUnequip(wearer, slot, out var removedItem, force: true))
+                if (Inventory.TryUnequip(wearer, slot, out var removedItem))
                 {
                     Container.Insert(removedItem.Value, partContainer);
                     RemComp<AttachedModularSuitPartComponent>(removedItem.Value);

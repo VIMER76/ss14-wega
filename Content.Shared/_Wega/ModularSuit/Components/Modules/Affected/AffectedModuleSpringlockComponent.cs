@@ -10,6 +10,9 @@ public sealed partial class AffectedModuleSpringlockComponent : Component
     [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public bool Locked = false;
 
+    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
+    public bool Triggered = false;
+
     [DataField]
     public float SpeedMultiplier = 3f;
 

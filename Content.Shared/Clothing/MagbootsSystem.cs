@@ -26,6 +26,8 @@ public sealed class SharedMagbootsSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<MagbootsComponent, ItemToggledEvent>(OnToggled);
+        SubscribeLocalEvent<MagbootsComponent, ComponentAdd>(OnAddComponent); // Corvax-Wega-ModularSuit-Add
+        SubscribeLocalEvent<MagbootsComponent, ComponentRemove>(OnRemoveComponent); // Corvax-Wega-ModularSuit-Add
         SubscribeLocalEvent<MagbootsComponent, ClothingGotEquippedEvent>(OnGotEquipped);
         SubscribeLocalEvent<MagbootsComponent, ClothingGotUnequippedEvent>(OnGotUnequipped);
         SubscribeLocalEvent<MagbootsComponent, IsWeightlessEvent>(OnIsWeightless);
@@ -40,6 +42,20 @@ public sealed class SharedMagbootsSystem : EntitySystem
         if (_container.TryGetContainingContainer((ent.Owner, null, null), out var container))
             UpdateMagbootEffects(container.Owner, ent, args.Activated);
     }
+
+    // Corvax-Wega-ModularSuit-Add-start
+    private void OnAddComponent(Entity<MagbootsComponent> ent, ref ComponentAdd args)
+    {
+        if (_container.TryGetContainingContainer((ent.Owner, null, null), out var container))
+            UpdateMagbootEffects(container.Owner, ent, true);
+    }
+
+    private void OnRemoveComponent(Entity<MagbootsComponent> ent, ref ComponentRemove args)
+    {
+        if (_container.TryGetContainingContainer((ent.Owner, null, null), out var container))
+            UpdateMagbootEffects(container.Owner, ent, false);
+    }
+    // Corvax-Wega-ModularSuit-Add-end
 
     private void OnGotUnequipped(Entity<MagbootsComponent> ent, ref ClothingGotUnequippedEvent args)
     {

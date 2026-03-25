@@ -1,16 +1,16 @@
 # Construction
 - type: entity
-  parent: BaseItem
   id: ModularSuitConstruction
   name: modular construction
   description: "A partially assembled modular suit frame. Requires a core, armor parts, plating, and a power cell to complete."
   components:
-  - type: Item
-    size: Normal # <--- That's on purpose, because it's not assembled.
+  - type: Animateable
+  - type: Clickable
+  - type: InteractionOutline
+  - type: MovedByPressure
+  - type: Pullable
+  - type: DamageExaminable
   - type: Appearance
-  - type: ContainerContainer
-    containers:
-      battery-container: !type:Container
   - type: ModularSuitAssemblyVisuals
     statePrefix: mod
   - type: Sprite
@@ -18,23 +18,48 @@
     drawdepth: Items
     noRot: true
     state: mod0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3  # fite me
+        friction: 0.2
+  - type: EmitSoundOnCollide
+    sound:
+      collection: WeakHit
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Effects/drop.ogg
+      params:
+        volume: 2
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      collection: MetalThud
+  - type: CollisionWake
+  - type: GravityAffected
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
   - type: Construction
     graph: ModularSuit
     node: start
     defaultTarget: mod
 
 - type: entity
-  parent: BaseItem
+  parent: ModularSuitConstruction
   id: ModularSuitConstructionFinished
   name: modular construction
   description: "A fully assembled modular suit frame. Ready for plating installation and power cell insertion."
   components:
-  - type: Item
-    size: Huge
   - type: Sprite
-    sprite: *mod-rsi
-    drawdepth: Items
-    noRot: true
     state: mod8
   - type: Construction
     graph: ModularSuitVariants

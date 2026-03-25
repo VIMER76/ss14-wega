@@ -1,5 +1,6 @@
 using Content.Shared.Modular.Suit;
 using Content.Shared.Storage;
+using Content.Shared.Storage.EntitySystems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 
@@ -8,61 +9,65 @@ namespace Content.Server.Modular.Suit;
 public sealed class ModularSuitStorageModuleSystem : EntitySystem
 {
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly SharedStorageSystem _storage = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ModularSuitStorageModuleComponent, EntityTerminatingEvent>(OnTerminating);
+        SubscribeLocalEvent<ModularSuitStorageModuleComponent, ModularSuitInstalledEvent>(OnModuleInstalled);
         SubscribeLocalEvent<ModularSuitStorageModuleComponent, ModularSuitRemovedEvent>(OnModuleRemoved);
-
-        SubscribeLocalEvent<ModularSuitActionHolderComponent, OpenStorageModuleEvent>(OnOpenStorage);
     }
 
-    private void OnTerminating(Entity<ModularSuitStorageModuleComponent> module, ref EntityTerminatingEvent args)
+    private void OnModuleInstalled(Entity<ModularSuitStorageModuleComponent> module, ref ModularSuitInstalledEvent args)
     {
-        if (_container.TryGetContainer(module.Owner, module.Comp.ContainerId, out var container))
-            _container.EmptyContainer(container, true);
+        if (!TryComp<ModularSuitModuleComponent>(module.Owner, out var moduleComp) || !moduleComp.IsActive)
+            return;
+
+        AddStorageToSuit(args.Suit, module);
     }
 
     private void OnModuleRemoved(Entity<ModularSuitStorageModuleComponent> module, ref ModularSuitRemovedEvent args)
     {
-        if (_container.TryGetContainer(module.Owner, module.Comp.ContainerId, out var container))
-        {
-            var coords = Transform(args.Suit).Coordinates;
-            if (TryComp<ModularSuitComponent>(args.Suit, out var modular) && modular.Wearer != null)
-                coords = Transform(modular.Wearer.Value).Coordinates;
-
-            _container.EmptyContainer(container, true, coords);
-        }
-
-        if (_ui.HasUi(module.Owner, StorageComponent.StorageUiKey.Key))
-            _ui.CloseUi(module.Owner, StorageComponent.StorageUiKey.Key);
+        RemoveStorageFromSuit(args.Suit, module);
     }
 
-    private void OnOpenStorage(Entity<ModularSuitActionHolderComponent> ent, ref OpenStorageModuleEvent args)
+    private void AddStorageToSuit(EntityUid suit, Entity<ModularSuitStorageModuleComponent> module)
     {
-        if (args.Handled)
+        if (!TryComp<StorageComponent>(module.Owner, out var moduleStorage))
             return;
 
-        EntityUid? moduleEnt = null;
-        var moduleContainer = _container.GetContainer(ent.Owner, ModularSuitSystem.ModuleContainer);
-        foreach (var module in moduleContainer.ContainedEntities)
+        if (HasComp<StorageComponent>(suit))
+            return;
+
+        _storage.CopyComponent((module.Owner, moduleStorage), suit);
+        if (TryComp<StorageComponent>(suit, out var storage))
         {
-            if (!HasComp<StorageComponent>(module))
-                continue;
-
-            if (!TryComp<ModularSuitModuleComponent>(module, out var moduleComp) || !moduleComp.IsActive)
-                continue;
-
-            moduleEnt = module;
-            break;
+            storage.ShowVerb = true;
+            storage.ClickInsert = true;
+            storage.OpenOnActivate = true;
+            Dirty(suit, storage);
         }
+    }
 
-        if (!moduleEnt.HasValue)
+    private void RemoveStorageFromSuit(EntityUid suit, Entity<ModularSuitStorageModuleComponent> module)
+    {
+        if (!TryComp<StorageComponent>(suit, out var storage))
             return;
 
-        args.Handled = _ui.TryToggleUi(moduleEnt.Value, StorageComponent.StorageUiKey.Key, args.Performer);
+        if (storage.Container.ID != module.Comp.ContainerId)
+            return;
+
+        var coords = Transform(suit).Coordinates;
+        if (TryComp<ModularSuitComponent>(suit, out var modular) && modular.Wearer != null)
+            coords = Transform(modular.Wearer.Value).Coordinates;
+
+        _container.EmptyContainer(storage.Container, true, coords);
+
+        if (_ui.HasUi(suit, StorageComponent.StorageUiKey.Key))
+            _ui.CloseUi(suit, StorageComponent.StorageUiKey.Key);
+
+        RemComp<StorageComponent>(suit);
     }
 }

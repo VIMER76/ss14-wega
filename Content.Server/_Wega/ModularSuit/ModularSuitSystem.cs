@@ -224,9 +224,7 @@ public sealed partial class ModularSuitSystem : SharedModularSuitSystem
         var doAfterArgs = new DoAfterArgs(EntityManager, user, delay,
             new ModularSuitExtractDoAfterEvent(type), suit, suit, target)
         {
-            BreakOnMove = true,
-            BreakOnDamage = true,
-            MovementThreshold = 0.01f
+            BreakOnDamage = true
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);
@@ -378,9 +376,7 @@ public sealed partial class ModularSuitSystem : SharedModularSuitSystem
         var doAfterArgs = new DoAfterArgs(EntityManager, user, delay,
             new ModularSuitPartSealDoAfterEvent(activate), part, part)
         {
-            BreakOnMove = true,
-            BreakOnDamage = true,
-            MovementThreshold = 0.01f
+            BreakOnDamage = true
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);
@@ -484,8 +480,20 @@ public sealed partial class ModularSuitSystem : SharedModularSuitSystem
             return;
         }
 
-        var container = Container.GetContainer(args.Target.Value, PartContainer);
+        if (TryComp<ModularSuitEquippedComponent>(args.Target.Value, out var equipped))
+        {
+            foreach (var (_, partUid) in equipped.EquippedParts)
+            {
+                if (TryComp<ModularSuitPartComponent>(partUid, out var existingPart) &&
+                    existingPart.PartType == part.Comp.PartType)
+                {
+                    Popup.PopupEntity(Loc.GetString("modsuit-part-already-installed"), args.Target.Value, args.User);
+                    return;
+                }
+            }
+        }
 
+        var container = Container.GetContainer(args.Target.Value, PartContainer);
         foreach (var existing in container.ContainedEntities)
         {
             if (TryComp<ModularSuitPartComponent>(existing, out var existingPart) &&
@@ -660,7 +668,35 @@ public sealed partial class ModularSuitSystem : SharedModularSuitSystem
             return;
         }
 
-        if (!TryComp<ModularSuitEquippedComponent>(uid, out var equipped))
+        if (!TryComp<ModularSuitEquippedComponent>(uid, out var equipped) || equipped.EquippedParts.Count == 0)
+        {
+            suit.Assembled = false;
+            UpdateUiState((uid, suit));
+            return;
+        }
+
+        var requiredParts = new HashSet<SuitPartType>
+        {
+            SuitPartType.Helmet,
+            SuitPartType.Torso,
+            SuitPartType.Gloves,
+            SuitPartType.Boots
+        };
+
+        var partContainer = Container.GetContainer(uid, PartContainer);
+        foreach (var part in partContainer.ContainedEntities)
+        {
+            if (TryComp<ModularSuitPartComponent>(part, out var partComp))
+                requiredParts.Remove(partComp.PartType);
+        }
+
+        foreach (var (_, partUid) in equipped.EquippedParts)
+        {
+            if (TryComp<ModularSuitPartComponent>(partUid, out var partComp))
+                requiredParts.Remove(partComp.PartType);
+        }
+
+        if (requiredParts.Count > 0)
         {
             suit.Assembled = false;
             UpdateUiState((uid, suit));
