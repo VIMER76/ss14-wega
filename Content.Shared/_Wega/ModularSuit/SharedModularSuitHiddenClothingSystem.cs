@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Armor;
 using Content.Shared.Atmos;
 using Content.Shared.Clothing;
@@ -43,7 +44,15 @@ public abstract partial class SharedModularSuitHiddenClothingSystem : EntitySyst
                 if (TryComp<MaskComponent>(item, out var mask) && mask.IsToggled)
                     continue;
 
-                args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, armor.Modifiers);
+                var weakenedModifiers = new DamageModifierSet
+                {
+                    Coefficients = armor.Modifiers.Coefficients.ToDictionary(
+                        x => x.Key, x => 1f - (1f - x.Value) * ent.Comp.ArmorEfficiency),
+                    FlatReduction = armor.Modifiers.FlatReduction.ToDictionary(
+                        x => x.Key, x => x.Value * ent.Comp.ArmorEfficiency)
+                };
+
+                args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, weakenedModifiers);
             }
         }
     }
@@ -59,10 +68,11 @@ public abstract partial class SharedModularSuitHiddenClothingSystem : EntitySyst
 
                 foreach (var armorCoefficient in armor.Modifiers.Coefficients)
                 {
+                    var weakenedCoefficient = 1f - (1f - armorCoefficient.Value) * ent.Comp.ArmorEfficiency;
+
                     args.Args.DamageModifiers.Coefficients[armorCoefficient.Key] =
                         args.Args.DamageModifiers.Coefficients.TryGetValue(armorCoefficient.Key, out var coefficient)
-                            ? coefficient * armorCoefficient.Value
-                            : armorCoefficient.Value;
+                            ? coefficient * weakenedCoefficient : weakenedCoefficient;
                 }
             }
         }
