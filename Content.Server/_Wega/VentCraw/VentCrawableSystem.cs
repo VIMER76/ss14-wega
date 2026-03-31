@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.NodeContainer.Nodes;
+using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Item;
 using Content.Shared.Movement.Events;

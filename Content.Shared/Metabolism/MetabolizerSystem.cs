@@ -310,5 +310,32 @@ public sealed class MetabolizerSystem : EntitySystem
 
         return true;
     }
+
+    // Corvax-Wega-Vampire-start
+    public bool TryAddMetabolizerType(MetabolizerComponent component, string metabolizerType)
+    {
+        if (!_prototypeManager.HasIndex<MetabolizerTypePrototype>(metabolizerType))
+            return false;
+
+        if (component.MetabolizerTypes == null)
+            component.MetabolizerTypes = new();
+
+        return component.MetabolizerTypes.Add(metabolizerType);
+    }
+
+    public bool TryRemoveMetabolizerType(MetabolizerComponent component, string metabolizerType)
+    {
+        if (component.MetabolizerTypes == null)
+            return true;
+
+        return component.MetabolizerTypes.Remove(metabolizerType);
+    }
+
+    public void ClearMetabolizerTypes(MetabolizerComponent component)
+    {
+        if (component.MetabolizerTypes != null)
+            component.MetabolizerTypes.Clear();
+    }
+    // Corvax-Wega-Vampire-end
 }
 

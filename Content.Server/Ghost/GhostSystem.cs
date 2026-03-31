@@ -247,7 +247,7 @@ namespace Content.Server.Ghost
 
         private void OnMapInit(EntityUid uid, GhostComponent component, MapInitEvent args)
         {
-            if (HasComp<HumanoidAppearanceComponent>(uid)) // Corvax-Wega-GhostBar
+            if (HasComp<HumanoidProfileComponent>(uid)) // Corvax-Wega-GhostBar
                 return; // Corvax-Wega-GhostBar
 
             _actions.AddAction(uid, ref component.BooActionEntity, component.BooAction);
@@ -362,7 +362,7 @@ namespace Content.Server.Ghost
 
         private void WarpTo(EntityUid uid, EntityUid target)
         {
-            if (HasComp<HumanoidAppearanceComponent>(uid)) // Corvax-Wega-GhostBar
+            if (HasComp<HumanoidProfileComponent>(uid)) // Corvax-Wega-GhostBar
                 return; // Corvax-Wega-GhostBar
 
             _adminLog.Add(LogType.GhostWarp, $"{ToPrettyString(uid)} ghost warped to {ToPrettyString(target)}");

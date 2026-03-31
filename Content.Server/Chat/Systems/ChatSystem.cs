@@ -163,7 +163,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool ignoreActionBlocker = false
         )
     {
-        if (HasComp<GhostComponent>(source) && !HasComp<HumanoidAppearanceComponent>(source)) // Corvax-Wega-Ghostbar
+        if (HasComp<GhostComponent>(source) && !HasComp<HumanoidProfileComponent>(source)) // Corvax-Wega-Ghostbar
         {
             // Ghosts can only send dead chat messages, so we'll forward it to InGame OOC.
             TrySendInGameOOCMessage(source, message, InGameOOCChatType.Dead, range == ChatTransmitRange.HideChat, shell, player);

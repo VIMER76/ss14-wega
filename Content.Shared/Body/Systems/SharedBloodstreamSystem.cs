@@ -41,7 +41,6 @@ public abstract class SharedBloodstreamSystem : EntitySystem
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!; // Corvax-Wega-Surgery
 
     public override void Initialize()
     {
@@ -72,33 +71,6 @@ public abstract class SharedBloodstreamSystem : EntitySystem
 
             bloodstream.NextUpdate += bloodstream.AdjustedUpdateInterval;
             DirtyField(uid, bloodstream, nameof(BloodstreamComponent.NextUpdate)); // needs to be dirtied on the client so it can be rerolled during prediction
-
-            // Corvax-Wega-Surgery-start
-            var hasHeart = false;
-            if (TryComp<BodyComponent>(uid, out var body))
-            {
-                var organs = _body.GetBodyOrgans(uid, body);
-                foreach (var (organId, _) in organs)
-                {
-                    if (HasComp<HeartComponent>(organId))
-                    {
-                        hasHeart = true;
-                        break;
-                    }
-                }
-            }
-
-            if (!hasHeart && HasComp<HumanoidAppearanceComponent>(uid))
-            {
-                var damage = new DamageSpecifier();
-                damage.DamageDict.Add("Bloodloss", 2.5f);
-                _damageableSystem.TryChangeDamage(uid, damage);
-
-                TryModifyBloodLevel((uid, bloodstream), -bloodstream.BleedAmount);
-                TryModifyBleedAmount((uid, bloodstream), -bloodstream.BleedReductionAmount);
-                continue;
-            }
-            // Corvax-Wega-Surgery-end
 
             if (!SolutionContainer.ResolveSolution(uid, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution))
                 continue;

@@ -120,10 +120,10 @@ public sealed partial class AshDrakeSystem : EntitySystem
         if (_random.NextDouble() < 0.5)
             StartMeteorShower(ent);
 
-        if (TryComp<DamageableComponent>(ent, out var damageable)
-            && _threshold.TryGetThresholdForState(ent, MobState.Dead, out var threshold))
+        var totalDamage = _damage.GetTotalDamage(ent.Owner);
+        if (totalDamage > 0 && _threshold.TryGetThresholdForState(ent, MobState.Dead, out var threshold))
         {
-            if (damageable.TotalDamage >= threshold - threshold * args.HealthModifier)
+            if (totalDamage >= threshold - threshold * args.HealthModifier)
             {
                 ShootCircularPattern(ent, 12, 1);
                 return;
@@ -151,16 +151,16 @@ public sealed partial class AshDrakeSystem : EntitySystem
     private void OnLavaAction(Entity<AshDrakeBossComponent> ent, ref AshDrakeLavaActionEvent args)
     {
         args.Handled = true;
-        if (TryComp<DamageableComponent>(ent, out var damageable)
-            && _threshold.TryGetThresholdForState(ent, MobState.Dead, out var threshold))
+
+        var totalDamage = _damage.GetTotalDamage(ent.Owner);
+        if (_threshold.TryGetThresholdForState(ent, MobState.Dead, out var threshold))
         {
-            if (damageable.TotalDamage >= threshold - threshold * args.HealthModifier)
+            if (totalDamage >= threshold - threshold * args.HealthModifier)
             {
                 StartLavaArena(ent, args);
                 return;
             }
         }
-
         StartLavaJump(ent, args);
     }
 

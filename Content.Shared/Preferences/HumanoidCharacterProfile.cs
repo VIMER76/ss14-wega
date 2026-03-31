@@ -113,7 +113,7 @@ namespace Content.Shared.Preferences
         public string Voice { get; set; } = HumanoidProfileSystem.DefaultVoice;
 
         [DataField] // Corvax-Wega-Barks
-        public string BarkVoice { get; set; } = SharedHumanoidAppearanceSystem.DefaultBarkVoice; // Corvax-Wega-Barks
+        public string BarkVoice { get; set; } = HumanoidProfileSystem.DefaultBarkVoice; // Corvax-Wega-Barks
 
         [DataField]
         public int Age { get; set; } = 18;
@@ -935,7 +935,7 @@ namespace Content.Shared.Preferences
             // Corvax-Wega-Barks-start
             prototypeManager.TryIndex<BarkPrototype>(BarkVoice, out var barkvoice);
             if (barkvoice is null)
-                BarkVoice = SharedHumanoidAppearanceSystem.DefaultBarkVoice;
+                BarkVoice = HumanoidProfileSystem.DefaultBarkVoice;
             // Corvax-Wega-Barks-end
 
             // Corvax-TTS-Start

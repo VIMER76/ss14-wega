@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server.Cargo.Components;
-using Content.Server.CharacterAppearance.Components;
+using Content.Server.Humanoid.Components;
 using Content.Server.Lavaland.Mobs.Components;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Surgery;
@@ -162,7 +162,7 @@ public sealed partial class LegionSystem : EntitySystem
 
         if (_lookup.GetEntitiesInRange<LegionFaunaComponent>(Transform(entity).Coordinates, 6f).Count > 0)
         {
-            var legion = TryComp<HumanoidAppearanceComponent>(entity, out var humanoid) && humanoid.Height <= 160
+            var legion = TryComp<HumanoidProfileComponent>(entity, out var humanoid) && humanoid.Height <= 160
                 || HasComp<SmallHeightComponent>(entity) ? entity.Comp.DwarfPolymorph : entity.Comp.BasePolymorph;
 
             _polymorph.PolymorphEntity(entity, legion);

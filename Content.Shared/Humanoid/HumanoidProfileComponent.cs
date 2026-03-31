@@ -1,4 +1,6 @@
 using Content.Shared.Corvax.TTS;
+using Content.Shared.Genetics.Systems; // Corvax-Wega-Genetics
+using Content.Shared.Height; // Corvax-Wega-Height
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Speech.Synthesis;
@@ -12,7 +14,7 @@ namespace Content.Shared.Humanoid;
 /// Dictates what species and age this character "looks like"
 /// </summary>
 [NetworkedComponent, RegisterComponent, AutoGenerateComponentState(true)]
-[Access(typeof(HumanoidProfileSystem))]
+[Access(typeof(HumanoidProfileSystem), typeof(SharedDnaModifierSystem), typeof(HeightSystem))] // Corvax-Wega-Edit
 public sealed partial class HumanoidProfileComponent : Component
 {
     [DataField, AutoNetworkedField]
@@ -35,7 +37,7 @@ public sealed partial class HumanoidProfileComponent : Component
     public float Height = 175.0f;
 
     [DataField("barkvoice")]
-    public ProtoId<BarkPrototype> BarkVoice { get; set; } = SharedHumanoidAppearanceSystem.DefaultBarkVoice;
+    public ProtoId<BarkPrototype> BarkVoice { get; set; } = HumanoidProfileSystem.DefaultBarkVoice;
     // Corvax-Wega-end
 
     // Corvax-TTS-Start

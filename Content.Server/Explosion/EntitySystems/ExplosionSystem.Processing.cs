@@ -22,6 +22,7 @@ using System.Numerics;
 using Content.Shared.Damage.Systems;
 using Robust.Shared.Prototypes;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
+using Content.Shared.Body;
 
 namespace Content.Server.Explosion.EntitySystems;
 
@@ -461,8 +462,8 @@ public sealed partial class ExplosionSystem
                 _damageableSystem.TryChangeDamage((entity, damageable), damage, ignoreResistances: true, ignoreGlobalModifiers: true);
 
                 // Corvax-Wega-Surgery-start
-                if (damage.GetTotal() > 100f && TryComp<BodyComponent>(entity, out var body))
-                    _surgery.ExplosionLimbLoss((entity, body), damage.GetTotal());
+                if (damage.GetTotal() > 100f && HasComp<BodyComponent>(entity))
+                    _surgery.ExplosionLimbLoss(entity, damage.GetTotal());
                 // Corvax-Wega-Surgery-end
 
                 if (_actorQuery.HasComp(entity))

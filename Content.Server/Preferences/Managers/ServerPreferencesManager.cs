@@ -108,6 +108,12 @@ namespace Content.Server.Preferences.Managers
             if (Enum.TryParse<Gender>(profile.Gender, true, out var genderVal))
                 gender = genderVal;
 
+            // Corvax-Wega-Barks-start
+            var barkVoice = profile.BarkVoice;
+            if (barkVoice == String.Empty)
+                barkVoice = HumanoidProfileSystem.DefaultBarkVoice;
+            // Corvax-Wega-Barks-end
+
             // Corvax-TTS-Start
             var voice = profile.Voice;
             if (voice == String.Empty)
@@ -120,6 +126,12 @@ namespace Content.Server.Preferences.Managers
             var species = profile.Species;
             if (!_prototypeManager.HasIndex<SpeciesPrototype>(species))
                 species = HumanoidCharacterProfile.DefaultSpecies;
+
+            // Corvax-Wega-start
+            var status = Status.No;
+            if (Enum.TryParse<Status>(profile.Status, true, out var statusVal))
+                status = statusVal;
+            // Corvax-Wega-end
 
             if (profile.OrganMarkings?.RootElement is { } element)
             {
@@ -178,11 +190,24 @@ namespace Content.Server.Preferences.Managers
             return new HumanoidCharacterProfile(
                 profile.CharacterName,
                 profile.FlavorText,
+                // Corvax-Wega-Graphomancy-Extended-start
+                profile.OOCFlavorText,
+                profile.CharacterFlavorText,
+                profile.GreenFlavorText,
+                profile.YellowFlavorText,
+                profile.RedFlavorText,
+                profile.TagsFlavorText,
+                profile.LinksFlavorText,
+                profile.NSFWFlavorText,
+                // Corvax-Wega-Graphomancy-Extended-end
                 species,
+                barkVoice, // Corvax-Wega-Barks
                 voice, // Corvax-TTS
                 profile.Age,
                 sex,
                 gender,
+                status, // Corvax-Wega
+                profile.Height, // Corvax-Wega-Height
                 new HumanoidCharacterAppearance
                 (
                     Color.FromHex(profile.EyeColor),

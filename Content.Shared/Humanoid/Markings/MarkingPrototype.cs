@@ -1,4 +1,5 @@
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization; // Corvax-Wega-Genetics-Add
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Humanoid.Markings
@@ -13,6 +14,9 @@ namespace Content.Shared.Humanoid.Markings
 
         [DataField("bodyPart", required: true)]
         public HumanoidVisualLayers BodyPart { get; private set; } = default!;
+
+        [DataField("markingType")] // Corvax-Wega-Genetics
+        public MarkingTypes MarkingType { get; private set; } = MarkingTypes.Base; // Corvax-Wega-Genetics
 
         [DataField]
         public List<ProtoId<MarkingsGroupPrototype>>? GroupWhitelist;
@@ -46,4 +50,13 @@ namespace Content.Shared.Humanoid.Markings
             return new Marking(ID, Sprites.Count);
         }
     }
+
+    // Corvax-Wega-Genetics-start
+    [Serializable, NetSerializable]
+    public enum MarkingTypes : byte
+    {
+        Base,
+        NonGenetics
+    }
+    // Corvax-Wega-Genetics-end
 }

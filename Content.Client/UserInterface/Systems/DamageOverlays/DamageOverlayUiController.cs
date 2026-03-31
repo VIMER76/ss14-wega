@@ -132,7 +132,7 @@ public sealed class DamageOverlayUiController : UIController
             case MobState.PreCritical:
             {
                 if (!_mobThresholdSystem.TryGetDeadPercentage(entity,
-                        FixedPoint2.Max(0.0, damageable.TotalDamage), out var critLevel))
+                        FixedPoint2.Max(0.0, _damageable.GetTotalDamage((entity, damageable))), out var critLevel))
                     return;
                 _overlay.CritLevel = critLevel.Value.Float();
                 _overlay.OxygenLevel = FixedPoint2.Min(FixedPoint2.New(1f), FixedPoint2.New(0.8f / (critLevel?.Float() ?? 1f))).Float();

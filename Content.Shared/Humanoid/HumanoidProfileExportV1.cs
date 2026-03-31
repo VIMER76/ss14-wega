@@ -58,11 +58,40 @@ public sealed partial class HumanoidCharacterProfileV1
     [DataField]
     public string FlavorText;
 
+    // Corvax-Wega-Graphomancy-Extended-start
+    [DataField]
+    public string OOCFlavorText = string.Empty;
+
+    [DataField]
+    public string CharacterFlavorText = string.Empty;
+
+    [DataField]
+    public string GreenFlavorText = string.Empty;
+
+    [DataField]
+    public string YellowFlavorText = string.Empty;
+
+    [DataField]
+    public string RedFlavorText = string.Empty;
+
+    [DataField]
+    public string TagsFlavorText = string.Empty;
+
+    [DataField]
+    public string LinksFlavorText = string.Empty;
+
+    [DataField]
+    public string NSFWFlavorText = string.Empty;
+    // Corvax-Wega-Graphomancy-Extended-end
+
     [DataField]
     public ProtoId<SpeciesPrototype> Species;
 
     [DataField] //Corvax-TTS
     public string Voice = HumanoidProfileSystem.DefaultVoice;
+
+    [DataField] // Corvax-Wega-Barks
+    public string BarkVoice = HumanoidProfileSystem.DefaultBarkVoice;
 
     [DataField]
     public int Age;
@@ -72,6 +101,14 @@ public sealed partial class HumanoidCharacterProfileV1
 
     [DataField]
     public Gender Gender;
+
+    // Corvax-Wega-start
+    [DataField]
+    public Status Status = Status.No;
+
+    [DataField]
+    public float Height = 175.0f;
+    // Corvax-Wega-end
 
     [DataField]
     public HumanoidCharacterAppearanceV1 Appearance;
@@ -84,7 +121,33 @@ public sealed partial class HumanoidCharacterProfileV1
 
     public HumanoidCharacterProfile ToV2()
     {
-        return new(Name, FlavorText, Species, Voice, Age, Sex, Gender, Appearance.ToV2(Species), SpawnPriority, JobPriorities, PreferenceUnavailable, AntagPreferences, TraitPreferences, Loadouts);
+        // Corvax-Wega-Idk: Let it be so because it's a dummy
+        return new(
+            Name,
+            FlavorText,
+            OOCFlavorText,
+            CharacterFlavorText,
+            GreenFlavorText,
+            YellowFlavorText,
+            RedFlavorText,
+            TagsFlavorText,
+            LinksFlavorText,
+            NSFWFlavorText,
+            Species,
+            BarkVoice,
+            Voice,
+            Age,
+            Sex,
+            Gender,
+            Status,
+            Height,
+            Appearance.ToV2(Species),
+            SpawnPriority,
+            JobPriorities,
+            PreferenceUnavailable,
+            AntagPreferences,
+            TraitPreferences,
+            Loadouts);
     }
 }
 

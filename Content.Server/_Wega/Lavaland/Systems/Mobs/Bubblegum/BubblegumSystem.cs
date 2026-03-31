@@ -1297,13 +1297,11 @@ public sealed partial class BubblegumSystem : EntitySystem
 
     private float GetHealthRatio(EntityUid uid)
     {
-        if (!TryComp<DamageableComponent>(uid, out var damageable))
-            return 1f;
-
+        var totalDamage = _damage.GetTotalDamage(uid);
         if (!_threshold.TryGetThresholdForState(uid, MobState.Dead, out var threshold))
             return 1f;
 
-        return 1f - (float)(damageable.TotalDamage / threshold.Value.Double());
+        return 1f - (float)(totalDamage / threshold.Value.Double());
     }
 
     private bool IsValidMapPosition(EntityUid mapUid, Vector2 position)

@@ -60,7 +60,7 @@ public sealed class CellMutagenicInjectorSystem : EntitySystem
             return;
         }
 
-        if (HasComp<HumanoidAppearanceComponent>(target))
+        if (HasComp<HumanoidProfileComponent>(target))
         {
             _popup.PopupPredicted(Loc.GetString("cell-injector-no-humanoid"), ent, null, PopupType.MediumCaution);
             return;

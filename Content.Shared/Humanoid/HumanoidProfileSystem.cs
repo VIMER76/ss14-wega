@@ -23,6 +23,8 @@ public sealed class HumanoidProfileSystem : EntitySystem
     };
     // Corvax-TTS-End
 
+    public const string DefaultBarkVoice = "BarksGoonSpeak1"; // Corvax-Wegs-Barks
+
     public override void Initialize()
     {
         base.Initialize();

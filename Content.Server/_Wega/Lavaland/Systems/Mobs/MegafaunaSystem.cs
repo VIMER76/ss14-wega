@@ -17,6 +17,7 @@ public sealed partial class MegafaunaSystem : EntitySystem
     [Dependency] private readonly SharedAchievementsSystem _achievement = default!;
     [Dependency] private readonly SharedAmbientSoundSystem _ambient = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
 
     public override void Initialize()
@@ -35,7 +36,8 @@ public sealed partial class MegafaunaSystem : EntitySystem
 
     private void OnDamageChanged(EntityUid uid, MegafaunaComponent component, DamageChangedEvent args)
     {
-        if (!component.IsActive && args.Damageable.TotalDamage > 0)
+        var totalDamage = _damage.GetTotalDamage(uid);
+        if (!component.IsActive && totalDamage > 0)
             ActivateMegafauna(uid, component);
 
         if (TryComp<HTNComponent>(uid, out var htn) && args.Origin != null)
