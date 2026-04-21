@@ -63,7 +63,6 @@
 - type: entity
   parent: BaseSpeciesAppearance
   id: AppearanceVulpkanin
-  categories: [ HideSpawnMenu ]
   name: vulpkanin appearance
   components:
   - type: InitialBody
@@ -249,10 +248,6 @@
       reagents:
       - ReagentId: SulfurBlood
         Quantity: 300
-  - type: CreamPied
-    sprite:
-      sprite: Effects/creampie.rsi
-      state: creampie_vulpkanin
   # Corvax-Vulp_Port start
   - type: GrowlingAccent
   - type: Respirator

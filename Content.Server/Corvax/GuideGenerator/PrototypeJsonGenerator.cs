@@ -3,7 +3,9 @@ using System.Reflection;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using Robust.Shared.ContentPack;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Utility;
@@ -152,9 +154,8 @@ public static class PrototypeJsonGenerator
             }
         }
 
-        return type.GetCustomAttributes(inherit: true)
-                   .Any(attr =>
+        return type.GetCustomAttributes(inherit: true).Any(attr =>
                    attr.GetType().Name is nameof(DataDefinitionAttribute) or nameof(SerializableAttribute))
-                && HasUnsafeSerializedDataField(type, visited);
+               && HasUnsafeSerializedDataField(type, visited);
     }
 }

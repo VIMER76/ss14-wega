@@ -1,12 +1,11 @@
 using System.Linq;
-using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Utility;
 using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;
 
 namespace Content.IntegrationTests.Tests.Damageable;
 
-public sealed class StaminaComponentTest : GameTest
+public sealed class StaminaComponentTest
 {
     private static string[] _entitiesWithStamina = GameDataScrounger.EntitiesWithComponent("Stamina");
 
@@ -16,7 +15,7 @@ public sealed class StaminaComponentTest : GameTest
     [Description("Ensures every entity with Stamina has a valid stamina configuration.")]
     public async Task ValidateStamina(string protoKey)
     {
-        var pair = Pair;
+        await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
         var protoMan = server.ProtoMan;
 
@@ -47,5 +46,7 @@ public sealed class StaminaComponentTest : GameTest
 #pragma warning restore NUnit2041
             }
         });
+
+        await pair.CleanReturnAsync();
     }
 }

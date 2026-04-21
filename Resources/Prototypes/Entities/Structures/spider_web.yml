@@ -1,6 +1,6 @@
 - type: entity
-  abstract: true
   id: SpiderWebBase
+  abstract: true
   placement:
     mode: SnapgridCenter
     snap:
@@ -45,9 +45,6 @@
     additionalKeys:
     - walls
     base: web_
-  - type: Construction
-    graph: CobwebsGraph
-    node: start
 
 - type: entity
   id: SpiderWeb

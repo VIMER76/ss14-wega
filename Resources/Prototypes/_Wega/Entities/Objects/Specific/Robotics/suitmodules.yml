@@ -636,6 +636,7 @@
   - type: ModularSuitModuleEffect
     activeComponents:
     - type: RadiationReceiver
+    - type: RadiationProtection
     - type: Geiger
       attachedToSuit: true
   - type: ModularSuitModule

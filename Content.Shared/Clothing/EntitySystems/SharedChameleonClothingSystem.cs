@@ -67,20 +67,12 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
 
     private void OnGotEquipped(EntityUid uid, ChameleonClothingComponent component, GotEquippedEvent args)
     {
-        if (Timing.ApplyingState)
-            return; // Already networked as part of the same gamestate
-
-        component.User = args.EquipTarget;
-        Dirty(uid, component);
+        component.User = args.Equipee;
     }
 
     private void OnGotUnequipped(EntityUid uid, ChameleonClothingComponent component, GotUnequippedEvent args)
     {
-        if (Timing.ApplyingState)
-            return; // Already networked as part of the same gamestate
-
         component.User = null;
-        Dirty(uid, component);
     }
 
     // Updates chameleon visuals and meta information.

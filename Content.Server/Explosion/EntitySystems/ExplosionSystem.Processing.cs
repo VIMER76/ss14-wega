@@ -504,6 +504,7 @@ public sealed partial class ExplosionSystem
                 dir,
                 physics,
                 xform,
+                _projectileQuery,
                 throwForce);
         }
     }

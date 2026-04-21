@@ -18,8 +18,6 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
 
-    [Dependency] private readonly EntityQuery<HandsComponent> _handsQuery = default!;
-
     private DoAfter[] _doAfters = Array.Empty<DoAfter>();
 
     public override void Update(float frameTime)
@@ -27,6 +25,8 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         base.Update(frameTime);
 
         var time = GameTiming.CurTime;
+        var xformQuery = GetEntityQuery<TransformComponent>();
+        var handsQuery = GetEntityQuery<HandsComponent>();
 
         var enumerator = EntityQueryEnumerator<ActiveDoAfterComponent, DoAfterComponent>();
         while (enumerator.MoveNext(out var uid, out var active, out var comp))
@@ -34,7 +34,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
 
             try
             {
-                Update(uid, active, comp, time);
+                Update(uid, active, comp, time, xformQuery, handsQuery);
             }
             // ReSharper disable once RedundantCatchClause
 #if EXCEPTION_TOLERANCE
@@ -87,7 +87,9 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         EntityUid uid,
         ActiveDoAfterComponent active,
         DoAfterComponent comp,
-        TimeSpan time)
+        TimeSpan time,
+        EntityQuery<TransformComponent> xformQuery,
+        EntityQuery<HandsComponent> handsQuery)
     {
         var dirty = false;
 
@@ -120,7 +122,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
                 continue;
             }
 
-            if (ShouldCancel(doAfter))
+            if (ShouldCancel(doAfter, xformQuery, handsQuery))
             {
                 InternalCancel(doAfter, comp);
                 dirty = true;
@@ -194,24 +196,27 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         }
     }
 
-    private bool ShouldCancel(DoAfter doAfter)
+    private bool ShouldCancel(DoAfter doAfter,
+        EntityQuery<TransformComponent> xformQuery,
+        EntityQuery<HandsComponent> handsQuery)
     {
         var args = doAfter.Args;
 
-        if (args.Used is { } used && !Exists(used))
+        //re-using xformQuery for Exists() checks.
+        if (args.Used is { } used && !xformQuery.HasComponent(used))
             return true;
 
-        if (args.EventTarget is { Valid: true } eventTarget && !Exists(eventTarget))
+        if (args.EventTarget is { Valid: true } eventTarget && !xformQuery.HasComponent(eventTarget))
             return true;
 
-        if (!TryComp(args.User, out TransformComponent? userXform))
+        if (!xformQuery.TryGetComponent(args.User, out var userXform))
             return true;
 
         TransformComponent? targetXform = null;
-        if (args.Target is { } target && !TryComp(target, out targetXform))
+        if (args.Target is { } target && !xformQuery.TryGetComponent(target, out targetXform))
             return true;
 
-        if (args.Used is { } @using && !Exists(@using))
+        if (args.Used is { } @using && !xformQuery.HasComp(@using))
             return true;
 
         // TODO: Re-use existing xform query for these calculations.
@@ -260,7 +265,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         // This does not mean their hand needs to be empty.
         if (args.NeedHand)
         {
-            if (!_handsQuery.TryGetComponent(args.User, out var hands) || hands.Count == 0)
+            if (!handsQuery.TryGetComponent(args.User, out var hands) || hands.Count == 0)
                 return true;
 
             // If an item was in the user's hand to begin with,

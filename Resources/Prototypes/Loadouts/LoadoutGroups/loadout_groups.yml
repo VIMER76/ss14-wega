@@ -1727,7 +1727,6 @@
   loadouts:
   - JesterHat
   - JesterAltHat
-  - ClownMitre
   # Corvax-Wega-Sponsors-start
   - ClothingHeadHatMagic
   - ClothingEyesGlassesGarGigaSponsor
@@ -4051,7 +4050,6 @@
   - ArmorVestSec # Corvax
   - ArmorVest
   - ArmorVestSlim
-  - SecurityOfficerOvercoat # Corvax
   - SecurityOfficerWintercoat
 
 - type: loadoutGroup
