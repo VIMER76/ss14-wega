@@ -69,9 +69,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     [Dependency] private readonly DamageExamineSystem _damageExamine = default!;
     [Dependency] private readonly SharedDirtSystem _dirt = default!; // Corvax-Wega-Dirtable
 
-    [Dependency] private readonly EntityQuery<DamageableComponent> _damageQuery = default!;
-
-    private const int AttackMask = (int) (CollisionGroup.MobMask | CollisionGroup.Opaque);
+    private const int AttackMask = (int)(CollisionGroup.MobMask | CollisionGroup.Opaque);
 
     /// <summary>
     /// Maximum amount of targets allowed for a wide-attack.
@@ -580,7 +578,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         _meleeSound.PlayHitSound(target.Value, user, GetHighestDamageSound(modifiedDamage, _protoManager), hitEvent.HitSoundOverride, component);
 
-        if (damageResult.GetTotal() > FixedPoint2.Zero && !TerminatingOrDeleted(target.Value))
+        if (damageResult.GetTotal() > FixedPoint2.Zero)
         {
             DoDamageEffect(targets, user, targetXform);
         }
@@ -639,15 +637,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         // Validate client
         for (var i = entities.Count - 1; i >= 0; i--)
         {
-            var entity = entities[i];
-
-            if (TerminatingOrDeleted(entity))
-            {
-                entities.RemoveAt(i);
-                continue;
-            }
-
-            if (!ArcRaySuccessful(entity,
+            if (ArcRaySuccessful(entities[i],
                     userPos,
                     direction.ToWorldAngle(),
                     component.Angle,
@@ -656,16 +646,20 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
                     user,
                     session))
             {
-                // Bad input
-                entities.RemoveAt(i);
+                continue;
             }
+
+            // Bad input
+            entities.RemoveAt(i);
         }
 
         var targets = new List<EntityUid>();
+        var damageQuery = GetEntityQuery<DamageableComponent>();
+
         foreach (var entity in entities)
         {
             if (entity == user ||
-                !_damageQuery.HasComponent(entity))
+                !damageQuery.HasComponent(entity))
                 continue;
 
             targets.Add(entity);
@@ -739,9 +733,6 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
                         $"{ToPrettyString(user):actor} melee attacked (heavy) {ToPrettyString(entity):subject} using {ToPrettyString(meleeUid):tool} and dealt {damageResult.GetTotal():damage} damage");
                 }
             }
-
-            if (TerminatingOrDeleted(entity))
-                targets.RemoveAt(i);
         }
 
         if (entities.Count != 0)
@@ -750,7 +741,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             _meleeSound.PlayHitSound(target, user, GetHighestDamageSound(appliedDamage, _protoManager), hitEvent.HitSoundOverride, component);
         }
 
-        if (appliedDamage.GetTotal() > FixedPoint2.Zero && targets.Count > 0)
+        if (appliedDamage.GetTotal() > FixedPoint2.Zero)
         {
             DoDamageEffect(targets, user, Transform(targets[0]));
         }

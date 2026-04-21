@@ -465,11 +465,11 @@ public sealed partial class BloodCultSystem : SharedBloodCultSystem
     #region Shield
     private void OnShieldGotUnequipped(Entity<BloodShieldActivaebleComponent> ent, ref GotUnequippedEvent args)
     {
-        if (!TryComp<EnergyShieldOwnerComponent>(args.EquipTarget, out var energyShield))
+        if (!TryComp<EnergyShieldOwnerComponent>(args.Equipee, out var energyShield))
             return;
 
         QueueDel(energyShield.ShieldEntity);
-        RemComp(args.EquipTarget, energyShield);
+        RemComp(args.Equipee, energyShield);
     }
     #endregion
 

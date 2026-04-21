@@ -1,7 +1,6 @@
 - type: entity
   parent: BaseSpeciesAppearance
   id: AppearanceGingerbread
-  categories: [ HideSpawnMenu ]
   name: gingerbread appearance
   components:
   - type: Inventory

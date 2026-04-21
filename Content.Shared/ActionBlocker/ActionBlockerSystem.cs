@@ -23,7 +23,14 @@ namespace Content.Shared.ActionBlocker
     {
         [Dependency] private readonly SharedContainerSystem _container = default!;
 
-        [Dependency] private readonly EntityQuery<ComplexInteractionComponent> _complexInteractionQuery = default!;
+        private EntityQuery<ComplexInteractionComponent> _complexInteractionQuery;
+
+        public override void Initialize()
+        {
+            base.Initialize();
+
+            _complexInteractionQuery = GetEntityQuery<ComplexInteractionComponent>();
+        }
 
         // These two methods should probably both live in SharedMoverController
         // but they're called in a million places and I'm not doing that

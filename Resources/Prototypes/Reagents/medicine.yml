@@ -1476,8 +1476,9 @@
   metabolisms:
     Bloodstream:
       effects:
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectRadiationProtection
+      - !type:GenericStatusEffect
+        key: RadiationProtection
+        component: RadiationProtection
         time: 2
         type: Add
       - !type:HealthChange

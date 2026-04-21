@@ -60,7 +60,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         base.OnGotEquipped(uid, component, args);
         if (component.IsEquipped && component.Enabled)
         {
-            EnsureComp<WearingHeadsetComponent>(args.EquipTarget).Headset = uid;
+            EnsureComp<WearingHeadsetComponent>(args.Equipee).Headset = uid;
             UpdateRadioChannels(uid, component);
         }
     }
@@ -69,7 +69,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
     {
         base.OnGotUnequipped(uid, component, args);
         RemComp<ActiveRadioComponent>(uid);
-        RemComp<WearingHeadsetComponent>(args.EquipTarget);
+        RemComp<WearingHeadsetComponent>(args.Equipee);
     }
 
     public void SetEnabled(EntityUid uid, bool value, HeadsetComponent? component = null)

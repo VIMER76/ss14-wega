@@ -29,7 +29,7 @@ public sealed partial class ChameleonClothingComponent : Component
     /// <summary>
     ///     Current user that wears chameleon clothing.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [ViewVariables]
     public EntityUid? User;
 
     /// <summary>

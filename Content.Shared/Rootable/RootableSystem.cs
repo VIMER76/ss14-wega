@@ -44,12 +44,15 @@ public sealed class RootableSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
 
-    [Dependency] private readonly EntityQuery<PuddleComponent> _puddleQuery = default!;
-    [Dependency] private readonly EntityQuery<PhysicsComponent> _physicsQuery = default!;
+    private EntityQuery<PuddleComponent> _puddleQuery;
+    private EntityQuery<PhysicsComponent> _physicsQuery;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _puddleQuery = GetEntityQuery<PuddleComponent>();
+        _physicsQuery = GetEntityQuery<PhysicsComponent>();
 
         SubscribeLocalEvent<RootableComponent, MapInitEvent>(OnRootableMapInit);
         SubscribeLocalEvent<RootableComponent, ComponentShutdown>(OnRootableShutdown);
@@ -118,15 +121,12 @@ public sealed class RootableSystem : EntitySystem
         if (!args.Settings.EventComponents.Contains(Factory.GetRegistration(ent.Comp.GetType()).Name))
             return;
 
-        // Make sure to set the datafields before adding the component so that the correct action gets spawned on map init.
-        var cloneComp = Factory.GetComponent<RootableComponent>();
-        cloneComp.Action = ent.Comp.Action;
-        cloneComp.RootedAlert = ent.Comp.RootedAlert;
+        var cloneComp = EnsureComp<RootableComponent>(args.CloneUid);
         cloneComp.TransferRate = ent.Comp.TransferRate;
         cloneComp.TransferFrequency = ent.Comp.TransferFrequency;
         cloneComp.SpeedModifier = ent.Comp.SpeedModifier;
         cloneComp.RootSound = ent.Comp.RootSound;
-        AddComp(args.CloneUid, cloneComp, true);
+        Dirty(args.CloneUid, cloneComp);
     }
 
     private void OnRootableMapInit(Entity<RootableComponent> ent, ref MapInitEvent args)

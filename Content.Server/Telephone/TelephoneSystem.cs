@@ -118,12 +118,12 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         // If speaker entity has TTS, the telephone will speak with the same voice
         if(TryComp<TTSComponent>(args.MessageSource, out var ttsSpeaker))
         {
-            var ttsTelephone = EnsureComp<TTSComponent>(speaker);
+            var ttsTelephone = EnsureComp<TTSComponent>(entity);
             ttsTelephone.VoicePrototypeId = ttsSpeaker.VoicePrototypeId;
         }
         else // Remove TTS if the speaker has no TTS
         {
-            RemComp<TTSComponent>(speaker);
+            RemComp<TTSComponent>(entity);
         }
         // Corvax-TTS-End
         _chat.TrySendInGameICMessage(speaker, args.Message, volume, range, nameOverride: name, checkRadioPrefix: false);

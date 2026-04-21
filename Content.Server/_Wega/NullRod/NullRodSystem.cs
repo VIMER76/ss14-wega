@@ -19,10 +19,10 @@ public sealed class NullRodSystem : EntitySystem
 
     private void OnDidEquip(Entity<NullRodComponent> ent, ref GotEquippedEvent args)
     {
-        if (!HasComp<BibleUserComponent>(args.EquipTarget) || HasComp<NullRodOwnerComponent>(args.EquipTarget))
+        if (!HasComp<BibleUserComponent>(args.Equipee) || HasComp<NullRodOwnerComponent>(args.Equipee))
             return;
 
-        EnsureComp<NullRodOwnerComponent>(args.EquipTarget);
+        EnsureComp<NullRodOwnerComponent>(args.Equipee);
     }
 
     private void OnHandEquipped(Entity<NullRodComponent> ent, ref GotEquippedHandEvent args)
@@ -35,10 +35,10 @@ public sealed class NullRodSystem : EntitySystem
 
     private void OnDidUnequip(Entity<NullRodComponent> ent, ref GotUnequippedEvent args)
     {
-        if (!HasComp<NullRodOwnerComponent>(args.EquipTarget))
+        if (!HasComp<NullRodOwnerComponent>(args.Equipee))
             return;
 
-        RemComp<NullRodOwnerComponent>(args.EquipTarget);
+        RemComp<NullRodOwnerComponent>(args.Equipee);
     }
 
     private void OnHandUnequipped(Entity<NullRodComponent> ent, ref GotUnequippedHandEvent args)

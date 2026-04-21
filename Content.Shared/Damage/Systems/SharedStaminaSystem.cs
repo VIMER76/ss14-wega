@@ -45,8 +45,6 @@ public abstract partial class SharedStaminaSystem : EntitySystem
     [Dependency] private readonly StatusEffectsSystem _status = default!;
     [Dependency] protected readonly SharedStunSystem StunSystem = default!;
 
-    [Dependency] private readonly EntityQuery<StaminaComponent> _stamQuery = default!;
-
     /// <summary>
     /// How much of a buffer is there between the stun duration and when stuns can be re-applied.
     /// </summary>
@@ -164,12 +162,13 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         if (ev.Cancelled)
             return;
 
+        var stamQuery = GetEntityQuery<StaminaComponent>();
         var toHit = new List<(EntityUid Entity, StaminaComponent Component)>();
 
         // Split stamina damage between all eligible targets.
         foreach (var ent in args.HitEntities)
         {
-            if (!_stamQuery.TryGetComponent(ent, out var stam))
+            if (!stamQuery.TryGetComponent(ent, out var stam))
                 continue;
 
             toHit.Add((ent, stam));
@@ -352,13 +351,14 @@ public abstract partial class SharedStaminaSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        var stamQuery = GetEntityQuery<StaminaComponent>();
         var query = EntityQueryEnumerator<ActiveStaminaComponent>();
         var curTime = Timing.CurTime;
 
         while (query.MoveNext(out var uid, out _))
         {
             // Just in case we have active but not stamina we'll check and account for it.
-            if (!_stamQuery.TryComp(uid, out var comp) ||
+            if (!stamQuery.TryGetComponent(uid, out var comp) ||
                 comp.StaminaDamage <= 0f && !comp.Critical)
             {
                 RemComp<ActiveStaminaComponent>(uid);

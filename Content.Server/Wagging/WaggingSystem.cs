@@ -35,13 +35,7 @@ public sealed class WaggingSystem : EntitySystem
         if (!args.Settings.EventComponents.Contains(Factory.GetRegistration(ent.Comp.GetType()).Name))
             return;
 
-        // Make sure to set the datafields before adding the component so that the correct action gets spawned on map init.
-        var cloneComp = Factory.GetComponent<WaggingComponent>();
-        cloneComp.Action = ent.Comp.Action;
-        cloneComp.Layer = ent.Comp.Layer;
-        cloneComp.Organ = ent.Comp.Organ;
-        cloneComp.Suffix = ent.Comp.Suffix;
-        AddComp(args.CloneUid, cloneComp, true);
+        EnsureComp<WaggingComponent>(args.CloneUid);
     }
 
     private void OnWaggingMapInit(Entity<WaggingComponent> ent, ref MapInitEvent args)

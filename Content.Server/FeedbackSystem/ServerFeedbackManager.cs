@@ -29,6 +29,9 @@ public sealed class ServerFeedbackManager : SharedFeedbackManager
     /// <inheritdoc />
     public override void SendToSession(ICommonSession session, List<ProtoId<FeedbackPopupPrototype>> popupPrototypes, bool remove = false)
     {
+        if (!NetManager.IsServer)
+            return;
+
         var msg = new FeedbackPopupMessage
         {
             FeedbackPrototypes = popupPrototypes,
@@ -41,6 +44,9 @@ public sealed class ServerFeedbackManager : SharedFeedbackManager
     /// <inheritdoc />
     public override void SendToAllSessions(List<ProtoId<FeedbackPopupPrototype>> popupPrototypes, bool remove = false)
     {
+        if (!NetManager.IsServer)
+            return;
+
         var msg = new FeedbackPopupMessage
         {
             FeedbackPrototypes = popupPrototypes,
@@ -53,6 +59,9 @@ public sealed class ServerFeedbackManager : SharedFeedbackManager
     /// <inheritdoc />
     public override void OpenForSession(ICommonSession session)
     {
+        if (!NetManager.IsServer)
+            return;
+
         var msg = new OpenFeedbackPopupMessage();
         NetManager.ServerSendMessage(msg, session.Channel);
     }
@@ -60,6 +69,9 @@ public sealed class ServerFeedbackManager : SharedFeedbackManager
     /// <inheritdoc />
     public override void OpenForAllSessions()
     {
+        if (!NetManager.IsServer)
+            return;
+
         var msg = new OpenFeedbackPopupMessage();
         NetManager.ServerSendToAll(msg);
     }

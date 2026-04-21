@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.IntegrationTests.Fixtures;
 using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds;
 using Content.Server.Destructible.Thresholds.Behaviors;
@@ -20,12 +19,12 @@ namespace Content.IntegrationTests.Tests.Destructible
     [TestFixture]
     [TestOf(typeof(DestructibleComponent))]
     [TestOf(typeof(DamageThreshold))]
-    public sealed class DestructibleThresholdActivationTest : GameTest
+    public sealed class DestructibleThresholdActivationTest
     {
         [Test]
         public async Task Test()
         {
-            var pair = Pair;
+            await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
 
             var sEntityManager = server.ResolveDependency<IEntityManager>();
@@ -290,6 +289,7 @@ namespace Content.IntegrationTests.Tests.Destructible
                     Assert.That(sTestThresholdListenerSystem.ThresholdsReached, Is.Empty);
                 });
             });
+            await pair.CleanReturnAsync();
         }
     }
 }

@@ -135,12 +135,12 @@ public abstract partial class SharedModularSuitSystem : EntitySystem
     {
         if (ent.Comp.Deployed)
         {
-            UndeploySuit(ent, args.EquipTarget);
+            UndeploySuit(ent, args.Equipee);
         }
 
         ent.Comp.Wearer = null;
-        RemComp<ModularSuitCarrierComponent>(args.EquipTarget);
-        _uiSystem.CloseUi(ent.Owner, ModularSuitUiKey.Key, args.EquipTarget);
+        RemComp<ModularSuitCarrierComponent>(args.Equipee);
+        _uiSystem.CloseUi(ent.Owner, ModularSuitUiKey.Key, args.Equipee);
     }
 
     private void DeploySuit(Entity<ModularSuitComponent> ent, EntityUid wearer)
@@ -371,7 +371,7 @@ public abstract partial class SharedModularSuitSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        Popup.PopupEntity(Loc.GetString("modsuit-impossible-equipped-part"), args.EquipTarget, args.EquipTarget, PopupType.SmallCaution);
+        Popup.PopupEntity(Loc.GetString("modsuit-impossible-equipped-part"), args.Equipee, args.Equipee, PopupType.SmallCaution);
         args.Cancel();
     }
 

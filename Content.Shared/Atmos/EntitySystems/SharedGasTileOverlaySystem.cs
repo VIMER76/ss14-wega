@@ -31,7 +31,8 @@ public abstract class SharedGasTileOverlaySystem : EntitySystem
         for (var i = 0; i < Atmospherics.TotalNumberOfGases; i++)
         {
             var gasPrototype = _atmosphere.GetGas(i);
-            if (gasPrototype.GasOverlaySprite != null)
+            if (!string.IsNullOrEmpty(gasPrototype.GasOverlayTexture) ||
+                (!string.IsNullOrEmpty(gasPrototype.GasOverlaySprite) && !string.IsNullOrEmpty(gasPrototype.GasOverlayState)))
                 visibleGases.Add(i);
         }
         VisibleGasId = visibleGases.ToArray();

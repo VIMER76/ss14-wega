@@ -27,7 +27,7 @@ public sealed class SkrellSystem : EntitySystem
         var slot = args.Slot;
         if (slot == "pocket3")
         {
-            var item = args.EquipTarget;
+            var item = args.Equipee;
             if (CheckCondition(entity))
             {
                 Timer.Spawn(1, () => _inventorySystem.TryUnequip(item, slot, force: true));
