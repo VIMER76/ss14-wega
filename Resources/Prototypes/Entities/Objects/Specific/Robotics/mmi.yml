@@ -57,6 +57,15 @@
     tags:
       - BrainSynthetic
   - type: Brain
+  - type: UserInterface
+    interfaces:
+      enum.NavMapBeaconUiKey.Key:
+        type: NavMapBeaconBoundUserInterface
+  - type: ActivatableUI
+    key: enum.NavMapBeaconUiKey.Key
+  - type: NavMapBeacon
+    enabled: false
+  - type: ConfigurableNavMapBeacon
   # Corvax-Wega-Android-end
 
 - type: entity
@@ -146,4 +155,13 @@
         - SecretStash
     # Corvax-Wega-Android-start
     - type: Brain
+    - type: UserInterface
+      interfaces:
+        enum.NavMapBeaconUiKey.Key:
+          type: NavMapBeaconBoundUserInterface
+    - type: ActivatableUI
+      key: enum.NavMapBeaconUiKey.Key
+    - type: NavMapBeacon
+      enabled: false
+    - type: ConfigurableNavMapBeacon
     # Corvax-Wega-Android-end

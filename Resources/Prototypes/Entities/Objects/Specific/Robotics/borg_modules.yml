@@ -817,12 +817,14 @@
         whitelist:
           tags:
           - ConstructionMaterial
+          - PowerCell # Corvax-Wega-robots
     - hand:
         emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
         emptyLabel: borg-slot-construction-empty
         whitelist:
           tags:
           - ConstructionMaterial
+          - PowerCell # Corvax-Wega-robots
 # Corvax-Wega-Robot-Start
     # - hand:
         # emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
@@ -1498,7 +1500,15 @@
     - item: BorgDropper
     # Corvax-Wega-Robot-end
     - item: Bucket
-    - item: PlantBag # Corvax-Wega-Robot
+    # Corvax-Wega-Robot-Start
+    - hand:
+        emptyRepresentative: DiseaseSwab
+        emptyLabel: borg-slot-swap-only-empty
+        whitelist:
+          components:
+          - DiseaseSwab
+    - item: PlantBag
+    # Corvax-Wega-Robot-End
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: gardening-module }
 
